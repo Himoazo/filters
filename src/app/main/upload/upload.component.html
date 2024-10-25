@@ -1,0 +1,5 @@
+<div>
+    <input type="file" (change)="selectFile($event)">
+    <input type="text" [(ngModel)]="imageName" placeholder="Skriv bildnamn" required>
+    <button (click)="uploading()" [disabled]="!selectedFile">Ladda upp bild</button>
+</div>

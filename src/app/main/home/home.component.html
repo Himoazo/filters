@@ -1,0 +1,15 @@
+<h2>Image list</h2>
+<!-- <ul>
+    <li *ngFor="let image of images">
+        {{image.id}} +
+        {{image.imageName}} +
+        <img [src]="image.imageUrl" alt="{{image.imageName}}">
+    </li>
+</ul> -->
+
+<div *ngFor="let image of imageUrls">
+    <img [src]="image.url" alt="Image" />
+    <a [href]="image.url" download>Download Image</a>
+
+    <button (click)="deleteImage(image.id)">Delete</button>
+  </div>
