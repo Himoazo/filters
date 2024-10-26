@@ -14,7 +14,14 @@ import { FormControl, FormsModule } from '@angular/forms';
 export class UploadComponent {
   selectedFile: File | null = null;
   imageName: string = "";
+  selectedFilter: number = 0;
 
+  filters = [
+    { name: "Sobel", value: 0 },
+    { name: "Blur", value: 1 },
+    { name: "Reflect", value: 2 },
+    {name: "Grayscale", value: 3}
+  ];
   constructor(private imageService: ImageService) { }
   
   selectFile(event: any): void {
@@ -26,7 +33,7 @@ export class UploadComponent {
 
   uploading(): void {
     if (this.selectedFile && this.imageName) {
-      this.imageService.addImage(this.selectedFile, this.imageName).subscribe(response => {
+      this.imageService.addImage(this.selectedFile, this.imageName, this.selectedFilter).subscribe(response => {
         console.log("successful uploading", response);
         this.selectedFile = null;
         this.imageName = "";

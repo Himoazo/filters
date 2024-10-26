@@ -1,5 +1,10 @@
 <div class="upload-container">
     <input type="file" (change)="selectFile($event)">
     <input type="text" [(ngModel)]="imageName" placeholder="Skriv bildnamn" required>
+    
+    <label for="filter">Choose a filter:</label>
+    <select id="filter" [(ngModel)]="selectedFilter">
+        <option *ngFor="let filter of filters" [value]="filter.value">{{ filter.name }}</option>
+    </select>
     <button (click)="uploading()" [disabled]="!selectedFile">Ladda upp bild</button>
 </div>

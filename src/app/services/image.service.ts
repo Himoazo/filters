@@ -22,11 +22,12 @@ export class ImageService {
   }
   
   //Add Images
-  addImage(imageFile: File, imageName: string): Observable<any>{
+  addImage(imageFile: File, imageName: string, filter: number): Observable<any>{
     const uploadedImg: FormData = new FormData();
     uploadedImg.append("ImageFile", imageFile);
     uploadedImg.append("ImageName", imageName);
     uploadedImg.append("ImageUrl", "default");
+    uploadedImg.append("Filter", filter.toString());
     return this.http.post<Image>(this.url, uploadedImg);
   }
 
