@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Image } from '../models/image';
@@ -36,5 +36,10 @@ export class ImageService {
   }
 
   //Edit image
-
+  editeImg(id: number, newName: string): Observable<string>{
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+  });
+    return this.http.put<string>(this.url + id, JSON.stringify(newName), {headers});
+  }
 }

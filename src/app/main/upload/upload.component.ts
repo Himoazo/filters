@@ -24,7 +24,7 @@ export class UploadComponent {
     }
   }
 
-  uploading() {
+  uploading(): void {
     if (this.selectedFile && this.imageName) {
       this.imageService.addImage(this.selectedFile, this.imageName).subscribe(response => {
         console.log("successful uploading", response);

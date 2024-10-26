@@ -1,6 +1,8 @@
 <h2>Image list</h2>
 
 <div *ngFor="let image of imageUrls" class="image-container">
+    <p contenteditable="true" (focusout)="editImage(image.id, $event)"> {{image.imgName}} </p>
+
     <img [src]="image.url" alt="Image" />
     <div class="image-actions">
         <a [href]="image.url" download>Download Image</a>

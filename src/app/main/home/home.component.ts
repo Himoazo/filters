@@ -14,7 +14,7 @@ import { RouterLink } from '@angular/router';
 export class HomeComponent {
 
   images: Image[] = [];
-  imageUrls: {id: number, url: string}[] = [];
+  imageUrls: {id: number, url: string, imgName: string}[] = [];
   constructor(private imageService: ImageService) { }
   
   ngOnInit() {
@@ -22,15 +22,15 @@ export class HomeComponent {
       this.images = data;
 
       for (let image of this.images) {
-        this.fetchImages(image.id);
+        this.fetchImages(image.id, image.imageName);
       }
     });
   }
 
-  fetchImages(id: number): void {
+  fetchImages(id: number, imgName: string): void {
     this.imageService.getImageId(id).subscribe((data: Blob) => {
       const imageUrl = URL.createObjectURL(data);
-      this.imageUrls?.push({id, url: imageUrl});
+      this.imageUrls?.push({id, url: imageUrl, imgName});
     });
   }
 
@@ -39,5 +39,17 @@ export class HomeComponent {
     
     this.imageUrls = this.imageUrls.filter(image => image.id != id);
     });
+  }
+
+
+  editImage(id: number, event: FocusEvent): void {
+    const newName = (event.target as HTMLElement).innerText.trim();
+    if (newName == null || newName.length > 30 || id == null) {
+      console.log("wrong id or name");
+    } else {
+      this.imageService.editeImg(id, newName).subscribe(response => { 
+        console.log(response);
+      });
+    }
   }
 }
