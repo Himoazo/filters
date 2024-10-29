@@ -12,7 +12,6 @@ import { windowWhen } from 'rxjs';
 })
 export class AppComponent {
   title = 'filters';
-
   loggedIn: boolean = false;
 
   ngOnInit() {

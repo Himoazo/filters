@@ -1,12 +1,17 @@
 <header>
+  <h1 routerLink="/home" id="logo">Computer Vision</h1>
   <ul>
-    <li *ngIf="loggedIn"><a routerLink="/home" routerLinkActive="active">Images</a>  </li>
-    <li *ngIf="loggedIn"> <a routerLink="/upload" routerLinkActive="active">Upload</a> </li>
+    <li *ngIf="loggedIn"><a routerLink="/home" routerLinkActive="active">Bilder</a>  </li>
+    <li *ngIf="loggedIn"> <a routerLink="/upload" routerLinkActive="active">Ladda upp</a> </li>
     <li *ngIf="!loggedIn"> <a routerLink="/signup" routerLinkActive="active">Registrera</a> </li>
+    <li> <a routerLink="/about" routerLinkActive="active">Om appen</a> </li>
     <li *ngIf="!loggedIn"> <a routerLink="/login" routerLinkActive="active">Logga in</a> </li>
-    <li *ngIf="loggedIn" ><a (click)="logOut()">Logga ut</a></li>
+    <li *ngIf="loggedIn" id="logOut"><a (click)="logOut()">Logga ut</a></li>
   </ul>
 </header>
 <main>
   <router-outlet />
 </main>
+<footer>
+  <p>Programmering i C#.NET. DT071G</p>
+</footer>

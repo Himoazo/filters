@@ -3,6 +3,7 @@ import { ImageService } from '../../services/image.service';
 import { Image } from '../../models/image';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,7 @@ export class HomeComponent {
 
   images: Image[] = [];
   imageUrls: {id: number, url: string, imgName: string}[] = [];
-  constructor(private imageService: ImageService) { }
+  constructor(private imageService: ImageService, private _snackBar: MatSnackBar) { }
   
   ngOnInit() {
     this.imageService.getImage().subscribe(data => {
@@ -27,7 +28,7 @@ export class HomeComponent {
     });
   }
 
-  result: string = "";
+
   fetchImages(id: number, imgName: string): void {
     this.imageService.getImageId(id).subscribe({
       next: (data: Blob) => {
@@ -35,32 +36,47 @@ export class HomeComponent {
         this.imageUrls?.push({id, url: imageUrl, imgName});
       }, 
       error: (err) => {
-        this.result = "Det gick inte att hämta sparade bilder";
+        this.openSnackBar("Det gick inte att hämta sparade bilder");
       }
     });
   }
 
-  deleteImage(id: number):void {
+  deleteImage(id: number): void {
+    if (confirm("Är du säker att du vill radera bilden?") == true) {
     this.imageService.deleteImg(id).subscribe({
       next: (response) => {
         this.imageUrls = this.imageUrls.filter(image => image.id != id);
-        this.result = "Bilden är raderad";
+        this.openSnackBar("Bilden är raderad");
       },
       error: (err) => {
-        this.result = "Det gick inte att radera bilden";
+        this.openSnackBar("Det gick inte att ändra bildnamnet");
       }
     });
+  } else {
+    return;
+  }
   }
 
 
   editImage(id: number, event: FocusEvent): void {
     const newName = (event.target as HTMLElement).innerText.trim();
-    if (newName == null || newName.length > 30 || id == null) {
-      this.result = "Namnet ska vara 1 - 30 bokstäver";
+    if (!newName || newName.length > 30) {
+      this.openSnackBar("Namnet ska vara 1 - 30 bokstäver");
     } else {
-      this.imageService.editeImg(id, newName).subscribe(response => { 
-        this.result = 'Bilden heter nu ${newName}';
+      this.imageService.editeImg(id, newName).subscribe({
+        next: () => {
+          this.openSnackBar(`Bilden heter nu ${newName}`);
+        },
+        error: () => {
+          this.openSnackBar("Det gick inte att ändra bildnamnet");
+        }
       });
     }
+  }
+
+  openSnackBar(message: string) {
+    this._snackBar.open(message, "X", {
+      duration: 5000
+    });
   }
 }

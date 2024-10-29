@@ -52,13 +52,17 @@ export class ImageService {
   }
 
   //Edit image
-  editeImg(id: number, newName: string): Observable<string>{
+  editeImg(id: number, newName: string): Observable<string> {
     const token = localStorage.getItem("token");
-
+    if (!token) {
+      throw new Error("User is not authenticated");
+    }
+  
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: "Bearer" + token
-  });
-    return this.http.put<string>(this.url + id, JSON.stringify(newName), {headers});
+      'Authorization': `Bearer ${token}`
+    });
+  
+    return this.http.put<string>(this.url + id, JSON.stringify(newName), { headers });
   }
 }

@@ -1,11 +1,14 @@
+<div *ngIf="spin" id="spinner"> <p>Vänta!!</p> <mat-spinner></mat-spinner></div>
+
 <div class="upload-container">
-    <input type="file" (change)="selectFile($event)">
-    <input type="text" [(ngModel)]="imageName" placeholder="Skriv bildnamn" required>
-    
-    <label for="filter">Choose a filter:</label>
+    <label for="file">Välj fil: <br> <small> Tillåtna filtyper: BMP, GIF, EXIF, JPG, PNG, och TIFF. <br> (max 1mb)</small></label>
+    <input type="file" name="file" (change)="selectFile($event)">
+    <label for="imageName">Bildnamn <small>(Obligatoriskt)</small>:</label>
+    <input type="text" [(ngModel)]="imageName" name="imageName" placeholder="Skriv bildnamn" required #nameInput="ngModel">
+     
+    <label for="filter">Välj filter:</label>
     <select id="filter" [(ngModel)]="selectedFilter">
         <option *ngFor="let filter of filters" [value]="filter.value">{{ filter.name }}</option>
     </select>
-    <button (click)="uploading()" [disabled]="!selectedFile">Ladda upp bild</button>
+    <button (click)="uploading()" [disabled]="!nameInput.valid ||!selectedFile">Ladda upp bild</button>
 </div>
-<div> {{result}} </div>

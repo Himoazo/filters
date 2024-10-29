@@ -1,0 +1,90 @@
+@import '../../../style/_variables';
+
+// About page styles
+.about {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: $border-radius;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    
+    h2 {
+      color: $text-color;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid $secondary-color;
+    }
+    
+    p {
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+      color: rgba($text-color, 0.9);
+      
+      strong {
+        color: $text-color;
+        font-weight: 600;
+      }
+    }
+    
+    ul {
+      margin: 1.5rem 0;
+      padding-left: 1.5rem;
+      
+      li {
+        margin-bottom: 1rem;
+        position: relative;
+        padding-left: 0.5rem;
+        
+        &::before {
+          content: '';
+          position: absolute;
+          left: -1rem;
+          top: 0.75rem;
+          width: 6px;
+          height: 6px;
+          background-color: $primary-color;
+          border-radius: 50%;
+        }
+        
+        strong {
+          color: $primary-color;
+          font-weight: 600;
+          margin-right: 0.25rem;
+        }
+      }
+    }
+    
+    // Special styling for the file type information
+    strong {
+      &:has(+ br) {  // Targets strong elements followed by a br
+        display: block;
+        margin-top: 1rem;
+        color: $primary-color;
+      }
+    }
+    
+    // Warning/observation styling
+    p strong:first-child {
+      display: inline-block;
+      margin-bottom: 0.5rem;
+      color: darken($danger-color, 10%);
+    }
+  }
+  
+  // Responsive adjustments for about page
+  @media (max-width: 768px) {
+    .about {
+      margin: 1rem;
+      padding: 1.5rem;
+      
+      h2 {
+        font-size: 1.5rem;
+      }
+      
+      ul {
+        padding-left: 1rem;
+      }
+    }
+  }

@@ -1,4 +1,9 @@
 @import '../../../style/_variables';
+
+h2{
+  margin-top: 1vh;
+  text-align: center;
+}
 .image-container {
   max-width: 1200px;
   margin: 2rem auto;
@@ -6,6 +11,9 @@
   background: white;
   border-radius: $border-radius;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   
   p[contenteditable="true"] {
     font-size: 1.2rem;
