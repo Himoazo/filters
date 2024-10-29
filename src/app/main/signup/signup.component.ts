@@ -35,11 +35,11 @@ export class SignupComponent {
       console.log('Form Submitted!', this.registerForm.value);
       this.auth.signUp(newUser as User).subscribe({
         next: (response) => {
-          console.log(response);
+
         },
         error: (error) => {
-          console.log(error);
-          this.signUpErr = error;
+          
+          this.signUpErr = error.message;
         }
       });
     }

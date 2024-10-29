@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../models/user';
 import { Router } from '@angular/router';
+import { AppComponent } from '../../app.component';
 
 @Component({
   selector: 'app-login',
@@ -18,21 +19,21 @@ export class LoginComponent {
     password: ['', [Validators.required]]
   });
 
-  constructor(private form: FormBuilder, private auth: AuthService, private router: Router) { }
+  constructor(private form: FormBuilder, private auth: AuthService, private router: Router, private appCompo: AppComponent) { }
 
   errorDiv: string = "";
   onSubmit() {
     if (this.loginForm.valid) {
       const loginData = this.loginForm.value;
-      console.log(loginData);
+      
       this.auth.logIn(loginData as User).subscribe({
         next: (response) => {
-          console.log(response.token);
           localStorage.setItem("token", response.token);
+          this.appCompo.loggedIn = true;
           this.router.navigate(["/home"]);
         }, error: (error) => {
-          console.log(error);
-          this.errorDiv = error;
+          
+          this.errorDiv = "Felaktigt lösenord/användarnamn";
         }
       });
     }

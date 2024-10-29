@@ -13,33 +13,51 @@ export class ImageService {
 
   // Get images
   getImage(): Observable<Image[]> {
-    return this.http.get<Image[]>(this.url);
+    const token = localStorage.getItem("token");
+    const headers = { Authorization: "Bearer " + token };
+    
+    return this.http.get<Image[]>(this.url, {headers});
   }
 
   //Get image by ID
   getImageId(id: number): Observable<Blob> {
-    return this.http.get(this.url + id, {responseType: "blob"});
+    const token = localStorage.getItem("token");
+    
+    
+    return this.http.get(this.url + id, {
+      responseType: "blob",
+      headers: { Authorization: "Bearer " + token }
+    });
   }
   
   //Add Images
   addImage(imageFile: File, imageName: string, filter: number): Observable<any>{
+    const token = localStorage.getItem("token");
+    const headers = { Authorization: "Bearer " + token };
+
     const uploadedImg: FormData = new FormData();
     uploadedImg.append("ImageFile", imageFile);
     uploadedImg.append("ImageName", imageName);
     uploadedImg.append("ImageUrl", "default");
     uploadedImg.append("Filter", filter.toString());
-    return this.http.post<Image>(this.url, uploadedImg);
+    return this.http.post<Image>(this.url, uploadedImg, {headers});
   }
 
   // Delete image
   deleteImg(id: number): Observable<Image>{
-    return this.http.delete<Image>(this.url + id)
+    const token = localStorage.getItem("token");
+    const headers = { Authorization: "Bearer " + token };
+
+    return this.http.delete<Image>(this.url + id, {headers})
   }
 
   //Edit image
   editeImg(id: number, newName: string): Observable<string>{
+    const token = localStorage.getItem("token");
+
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      Authorization: "Bearer" + token
   });
     return this.http.put<string>(this.url + id, JSON.stringify(newName), {headers});
   }

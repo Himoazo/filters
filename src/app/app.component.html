@@ -1,7 +1,10 @@
 <header>
   <ul>
-    <li><a routerLink="/home" routerLinkActive="active">Images</a>  </li>
-    <li> <a routerLink="/upload" routerLinkActive="active">Upload</a> </li>
+    <li *ngIf="loggedIn"><a routerLink="/home" routerLinkActive="active">Images</a>  </li>
+    <li *ngIf="loggedIn"> <a routerLink="/upload" routerLinkActive="active">Upload</a> </li>
+    <li *ngIf="!loggedIn"> <a routerLink="/signup" routerLinkActive="active">Registrera</a> </li>
+    <li *ngIf="!loggedIn"> <a routerLink="/login" routerLinkActive="active">Logga in</a> </li>
+    <li *ngIf="loggedIn" ><a (click)="logOut()">Logga ut</a></li>
   </ul>
 </header>
 <main>
