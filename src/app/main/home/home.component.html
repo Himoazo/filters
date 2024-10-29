@@ -1,4 +1,4 @@
-<h2>Image list</h2>
+<h2>Uppladdade bilder:</h2>
 
 <div *ngFor="let image of imageUrls" class="image-container">
     <p contenteditable="true" (focusout)="editImage(image.id, $event)"> {{image.imgName}} </p>

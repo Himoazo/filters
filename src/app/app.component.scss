@@ -1,38 +1,37 @@
+@import '../style/_variables';
+//Header
 header {
-    background-color: #333;
-    padding: 1rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 1rem 0;
   
   ul {
+    max-width: 1200px;
+    margin: 0 auto;
     list-style: none;
-    margin: 0;
-    padding: 0;
     display: flex;
-    justify-content: space-around;
+    gap: 2rem;
+    padding: 0 1rem;
+    
+    li {
+      a {
+        text-decoration: none;
+        color: $text-color;
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border-radius: $border-radius;
+        transition: $transition;
+        
+        &:hover {
+          background-color: $secondary-color;
+          color: $primary-color;
+        }
+        
+        &.active {
+          background-color: $primary-color;
+          color: white;
+        }
+      }
+    }
   }
-  
-  li {
-    margin: 0 1rem;
-  }
-  
-  a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1.2rem;
-    font-weight: bold;
-    transition: color 0.3s ease;
-  }
-  
-  a:hover {
-    color: #f39c12;
-  }
-  
-  a.active {
-    border-bottom: 2px solid #f39c12;
-  }
-  
-  main {
-    padding: 2rem;
-  }
-  
+}

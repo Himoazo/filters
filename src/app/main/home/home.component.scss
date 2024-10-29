@@ -1,62 +1,66 @@
-h2 {
-    font-size: 2rem;
-    text-align: center;
-    margin-bottom: 2rem;
-    color: #333;
-  }
+@import '../../../style/_variables';
+.image-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: white;
+  border-radius: $border-radius;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   
-  .image-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 2rem;
-    border: 1px solid #ddd;
-    padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #f9f9f9;
+  p[contenteditable="true"] {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border-radius: $border-radius;
+    transition: $transition;
+    
+    &:hover {
+      background-color: $secondary-color;
+    }
+    
+    &:focus {
+      outline: 2px solid $primary-color;
+      background-color: $secondary-color;
+    }
   }
   
   img {
-    width: 15%;
-    height: 15%;
+    width: 80%;
     height: auto;
+    border-radius: $border-radius;
     margin-bottom: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  a {
-    text-decoration: none;
-    color: #fff;
-    background-color: #3498db;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    margin-right: 1rem;
-    transition: background-color 0.3s ease;
-  }
-  
-  a:hover {
-    background-color: #2980b9;
-  }
-  
-  button {
-    background-color: #e74c3c;
-    color: #fff;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #c0392b;
   }
   
   .image-actions {
     display: flex;
-    justify-content: center;
-    margin-top: 1rem;
+    gap: 1rem;
+    
+    a, button {
+      padding: 0.5rem 1rem;
+      border-radius: $border-radius;
+      transition: $transition;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    
+    a {
+      background-color: $primary-color;
+      color: white;
+      
+      &:hover {
+        background-color: darken($primary-color, 10%);
+      }
+    }
+    
+    button {
+      background-color: $danger-color;
+      color: white;
+      border: none;
+      
+      &:hover {
+        background-color: darken($danger-color, 10%);
+      }
+    }
   }
-  
+}

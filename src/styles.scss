@@ -1,6 +1,32 @@
-@import 'styles/_variables';
+@import 'style/_variables';
 
 *{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: $text-color;
+    line-height: 1.6;
+    background-color: #f8f9fa;
+  }
+
+
+  @media (max-width: 768px) {
+    header ul {
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .image-actions {
+      flex-direction: column;
+      
+      a, button {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  }
