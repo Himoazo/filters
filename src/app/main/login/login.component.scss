@@ -58,3 +58,9 @@ form {
     }
   }
 }
+
+.error {
+  text-align: center;
+  margin-top: 1rem;
+  color: $danger-color;
+}

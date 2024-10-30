@@ -3,6 +3,7 @@ import { Component, NgModule } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../models/user';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-signup',
@@ -25,23 +26,27 @@ export class SignupComponent {
     email: ['', [Validators.required, Validators.email]]
   });
 
-  constructor(private form: FormBuilder, private auth: AuthService) { }
+  constructor(private form: FormBuilder, private auth: AuthService, private _snackBar: MatSnackBar) { }
 
   signUpErr: string = "";
   onSubmit(): void {
-    console.log(this.registerForm.value);
     const newUser = this.registerForm.value;
     if (this.registerForm.valid) {
-      console.log('Form Submitted!', this.registerForm.value);
       this.auth.signUp(newUser as User).subscribe({
         next: (response) => {
-
+          this.openSnackBar("Kontot har skapats, nu kan du logga in");
         },
         error: (error) => {
-          
           this.signUpErr = error.message;
+          this.openSnackBar(error.message);
         }
       });
     }
+  }
+
+  openSnackBar(message: string) {
+    this._snackBar.open(message, "X", {
+      duration: 5000
+    });
   }
 }
