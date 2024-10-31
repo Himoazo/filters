@@ -8,7 +8,7 @@ import { Image } from '../models/image';
 })
 export class ImageService {
 
-  private url: string = "http://localhost:5258/api/images/";
+  private url: string = "https://computervision-production.up.railway.app/api/images/";
   constructor(private http: HttpClient) { }
 
   // Get images
