@@ -9,7 +9,7 @@ import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
 })
 export class AuthService {
   //private url: string = "http://localhost:5258/api/account/";
-  private url: string = "https://computervision-production.up.railway.app/api/account/";
+  private url: string = "https://computervision-production.up.railway.app/api/account/"; //Länk till API
   
   constructor(private http: HttpClient) { }
 

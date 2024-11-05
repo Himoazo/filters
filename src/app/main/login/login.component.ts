@@ -14,6 +14,7 @@ import { AppComponent } from '../../app.component';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
+  //Login form instans
   loginForm = this.form.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]]
@@ -21,7 +22,8 @@ export class LoginComponent {
 
   constructor(private form: FormBuilder, private auth: AuthService, private router: Router, private appCompo: AppComponent) { }
 
-  errorDiv: string = "";
+  errorDiv: string = ""; //lagrar eventuella fel
+  //inloggnings funktion
   onSubmit() {
     if (this.loginForm.valid) {
       const loginData = this.loginForm.value;

@@ -1,58 +1,4 @@
 @import '../style/_variables';
-/* 
-//Header
-header {
-  background-color: white;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  padding: 1rem 0;
-  
-#logOut{
-  cursor: pointer;
-}
-
-  ul {
-    max-width: 1200px;
-    margin: 0 auto;
-    list-style: none;
-    display: flex;
-    gap: 2rem;
-    padding: 0 1rem;
-    
-    li {
-      a {
-        text-decoration: none;
-        color: $text-color;
-        font-weight: 500;
-        padding: 0.5rem 1rem;
-        border-radius: $border-radius;
-        transition: $transition;
-        
-        &:hover {
-          background-color: $secondary-color;
-          color: $primary-color;
-        }
-        
-        &.active {
-          background-color: $primary-color;
-          color: white;
-        }
-      }
-    }
-  }
-}
-
-main{
-  min-height: 100vh;
-}
-
-footer{
-  background-color: white;
-  p {
-    text-align: center;
-  }
-} */
-
-// ... (previous variables and global styles remain the same)
 
 //  Header styles
 header {
@@ -133,13 +79,13 @@ header {
   }
 }
 
-// Main content wrapper
+// Main 
 main {
   min-height: calc(100vh - 140px); // Adjust based on header + footer height
   padding: 2rem;
 }
 
-// Footer styles
+// Footer 
 footer {
   background-color: $secondary-color;
   padding: 1rem;
@@ -153,7 +99,7 @@ footer {
   }
 }
 
-// Responsive adjustments
+// Media queries
 @media (max-width: 822px) {
   header {
     grid-template-columns: 1fr;
@@ -186,7 +132,7 @@ footer {
   }
 }
 
-// Large screen optimization
+// Stora skärmar
 @media (min-width: 1200px) {
   header {
     padding: 1rem calc((100% - 1200px) / 2);

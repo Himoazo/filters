@@ -14,19 +14,21 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrl: './upload.component.scss'
 })
 export class UploadComponent {
-  selectedFile: File | null = null;
-  imageName: string = "";
-  selectedFilter: number = 0;
+  selectedFile: File | null = null; //Vald fil att ladda upp
+  imageName: string = ""; //bildnamn
+  selectedFilter: number = 0; //Filter värdet
 
+  //Filter lista 
   filters = [
     { name: "Edges", value: 0 },
     { name: "Blur", value: 1 },
     { name: "Reflect", value: 2 },
     { name: "Grayscale", value: 3}
   ];
+
   constructor(private imageService: ImageService, private _snackBar: MatSnackBar) { }
 
-  
+  //Anrops vid onChange, sätter den valda filen för uppladning
   selectFile(event: any): void {
     const file = event.target.files[0];
     if (file) {
@@ -35,7 +37,9 @@ export class UploadComponent {
   }
 
  
-  spin: boolean = false;
+  spin: boolean = false; //Togglar loading spinner vid uppladdning
+  
+  //Funktion för uppladning av bilder
   uploading(): void {
     this.spin = true;
     if (this.selectedFile && this.imageName) {
@@ -53,7 +57,7 @@ export class UploadComponent {
       this.spin = false;
     }
   }
-
+  //Pop up
   openSnackBar(message: string) {
     this._snackBar.open(message, "X", {
       duration: 5000

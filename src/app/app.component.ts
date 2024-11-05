@@ -12,7 +12,7 @@ import { windowWhen } from 'rxjs';
 })
 export class AppComponent {
   title = 'filters';
-  loggedIn: boolean = false;
+  loggedIn: boolean = false; //används i menyn för att visa login/logout
 
   ngOnInit() {
     if (localStorage.getItem("token")) {

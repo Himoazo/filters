@@ -8,7 +8,8 @@ import { Image } from '../models/image';
 })
 export class ImageService {
 
-  private url: string = "https://computervision-production.up.railway.app/api/images/";
+  private url: string = "https://computervision-production.up.railway.app/api/images/"; //länk till API
+
   constructor(private http: HttpClient) { }
 
   // Get images
@@ -19,10 +20,9 @@ export class ImageService {
     return this.http.get<Image[]>(this.url, {headers});
   }
 
-  //Get image by ID
+  //GET image by ID, hämtar bilder i blob format 
   getImageId(id: number): Observable<Blob> {
     const token = localStorage.getItem("token");
-    
     
     return this.http.get(this.url + id, {
       responseType: "blob",
@@ -30,7 +30,7 @@ export class ImageService {
     });
   }
   
-  //Add Images
+  //POST Images, laddar upp bilder
   addImage(imageFile: File, imageName: string, filter: number): Observable<any>{
     const token = localStorage.getItem("token");
     const headers = { Authorization: "Bearer " + token };
@@ -43,7 +43,7 @@ export class ImageService {
     return this.http.post<Image>(this.url, uploadedImg, {headers});
   }
 
-  // Delete image
+  // DELETE image raderar bild
   deleteImg(id: number): Observable<Image>{
     const token = localStorage.getItem("token");
     const headers = { Authorization: "Bearer " + token };
@@ -51,7 +51,7 @@ export class ImageService {
     return this.http.delete<Image>(this.url + id, {headers})
   }
 
-  //Edit image
+  //PUT image redigerar bildsnamn
   editeImg(id: number, newName: string): Observable<string> {
     const token = localStorage.getItem("token");
     if (!token) {

@@ -14,21 +14,23 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class HomeComponent {
 
-  images: Image[] = [];
-  imageUrls: {id: number, url: string, imgName: string}[] = [];
+  images: Image[] = []; // array för hämtade bilder
+  imageUrls: { id: number, url: string, imgName: string }[] = []; // Array för bilder med nedladdnings länk
+  
   constructor(private imageService: ImageService, private _snackBar: MatSnackBar) { }
   
+  // Vid komponent start
   ngOnInit() {
     this.imageService.getImage().subscribe(data => {
       this.images = data;
-
+      //Loopa genom bild array och anropa fetchImage för varje bild
       for (let image of this.images) {
         this.fetchImages(image.id, image.imageName);
       }
     });
   }
 
-
+  // Hämtar bilder med dwonload länk pushar respons i imageUrls
   fetchImages(id: number, imgName: string): void {
     this.imageService.getImageId(id).subscribe({
       next: (data: Blob) => {
@@ -41,6 +43,7 @@ export class HomeComponent {
     });
   }
 
+  //Radera en bild
   deleteImage(id: number): void {
     if (confirm("Är du säker att du vill radera bilden?") == true) {
     this.imageService.deleteImg(id).subscribe({
@@ -57,7 +60,7 @@ export class HomeComponent {
   }
   }
 
-
+  //Redigerar bildnamn
   editImage(id: number, event: FocusEvent): void {
     const newName = (event.target as HTMLElement).innerText.trim();
     if (!newName || newName.length > 30) {
@@ -73,7 +76,7 @@ export class HomeComponent {
       });
     }
   }
-
+  //Pop up
   openSnackBar(message: string) {
     this._snackBar.open(message, "X", {
       duration: 5000

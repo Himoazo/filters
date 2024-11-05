@@ -13,14 +13,15 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrl: './signup.component.scss'
 })
 export class SignupComponent {
+  // Sign up form instans
   registerForm = this.form.group({
     username: ['', [Validators.required, Validators.minLength(3)]],
     password: [
       '',
       [
         Validators.required,
-        Validators.minLength(10),
-        Validators.pattern('(?=.*[a-z])(?=.*[A-Z]).*')
+        Validators.minLength(10), //Lösenord måste vara minst 10 tecken
+        Validators.pattern('(?=.*[a-z])(?=.*[A-Z]).*') //Lösenord måste innehållar stora och små bokstäver
       ]
     ],
     email: ['', [Validators.required, Validators.email]]
@@ -28,7 +29,8 @@ export class SignupComponent {
 
   constructor(private form: FormBuilder, private auth: AuthService, private _snackBar: MatSnackBar) { }
 
-  signUpErr: string = "";
+  signUpErr: string = ""; //Error div
+  //Funktion för att registrera användare
   onSubmit(): void {
     const newUser = this.registerForm.value;
     if (this.registerForm.valid) {
@@ -44,6 +46,7 @@ export class SignupComponent {
     }
   }
 
+  //Pop up
   openSnackBar(message: string) {
     this._snackBar.open(message, "X", {
       duration: 5000
