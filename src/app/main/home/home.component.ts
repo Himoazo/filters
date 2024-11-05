@@ -4,11 +4,12 @@ import { Image } from '../../models/image';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, MatIconModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

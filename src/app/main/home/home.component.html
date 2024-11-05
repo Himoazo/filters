@@ -1,7 +1,10 @@
 <h2>Uppladdade bilder:</h2>
 
 <div *ngFor="let image of imageUrls" class="image-container">
-    <p contenteditable="true" (focusout)="editImage(image.id, $event)"> {{image.imgName}} </p>
+    <p contenteditable="true" (focusout)="editImage(image.id, $event)"> 
+        {{image.imgName}} 
+        <span id="icon"><mat-icon aria-hidden="false" aria-label="edit icon" fontIcon="edit"></mat-icon></span> 
+    </p>
     <img [src]="image.url" alt="Image" />
     <div class="image-actions">
         <a [href]="image.url" download>Download Image</a>
